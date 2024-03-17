@@ -203,25 +203,11 @@ sudo systemctl enable prometheus.service
 
 cd
 sudo apt update
-apt --fix-broken install -y 
-
-sudo apt-get install -y apt-transport-https
-
-sudo apt-get install -y software-properties-common wget
-
-apt --fix-broken install -y 
-
-sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
-
-echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
-
+wget $(curl -s https://api.github.com/repos/grafana/grafana/releases/latest |grep "tag_name" | awk '{print "https://dl.grafana.com/oss/release/grafana_" substr($2, 3, length($2)-4) "_amd64.deb"}')
+apt --fix-broken install -y
+sudo dpkg -i grafana*.deb 
 rm -rf ./grafana*
 
-wget $(curl -s https://api.github.com/repos/grafana/grafana/releases/latest |grep "tag_name" | awk '{print "https://dl.grafana.com/oss/release/grafana_" substr($2, 3, length($2)-4) "_amd64.deb"}')
-apt --fix-broken install -y 
-sudo dpkg -i grafana*.deb
-
 sudo systemctl start grafana-server
-
 systemctl status grafana-server
 sudo systemctl enable grafana-server
