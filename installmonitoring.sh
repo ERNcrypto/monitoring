@@ -210,5 +210,4 @@ apt --fix-broken install -y
 rm -rf ./grafana*
 
 sudo systemctl start grafana-server
-systemctl status grafana-server
 sudo systemctl enable grafana-server
