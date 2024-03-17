@@ -205,9 +205,15 @@ cd
 sudo apt update
 apt --fix-broken install -y 
 
-sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+sudo apt-get install -y apt-transport-https
 
-sudo dpkg -i grafana*.deb
+sudo apt-get install -y software-properties-common wget
+
+apt --fix-broken install -y 
+
+sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 
 rm -rf ./grafana*
 
