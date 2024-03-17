@@ -206,7 +206,7 @@ wget $(curl -s https://api.github.com/repos/grafana/grafana/releases/latest |gre
 
 sudo dpkg -i grafana*.deb
 
-apt --fix-broken install
+apt --fix-broken install -y
 
 rm -rf ./grafana*
 
