@@ -202,11 +202,12 @@ sudo systemctl start prometheus.service
 sudo systemctl enable prometheus.service
 
 cd
-wget $(curl -s https://api.github.com/repos/grafana/grafana/releases/latest |grep "tag_name" | awk '{print "https://dl.grafana.com/oss/release/grafana_" substr($2, 3, length($2)-4) "_amd64.deb"}')
+sudo apt update
+apt --fix-broken install -y 
+
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
 
 sudo dpkg -i grafana*.deb
-
-apt --fix-broken install -y
 
 rm -rf ./grafana*
 
