@@ -96,7 +96,7 @@ Restart=always
 RestartSec=5
 TimeoutSec=180
 
-User=tenderduty
+User=root
 WorkingDirectory=$HOME/tenderduty
 ExecStart=$(which tenderduty)
 
