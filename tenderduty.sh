@@ -10,7 +10,6 @@ rm "go$ver.linux-amd64.tar.gz"
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
-sudo useradd -rs /bin/false tenderduty
 cd $HOME
 git clone https://github.com/blockpane/tenderduty
 cd tenderduty
